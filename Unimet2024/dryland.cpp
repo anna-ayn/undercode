@@ -34,7 +34,7 @@ int main()
             int jj = j, minH = INT_MAX;
             while (jj < m && arr[i][jj] == 1)
             {
-                // desde la fila i, cuento la cantidad de unos que hay debajo de mi (en la misma columna jj)
+                // desde la fila i, cuento la cantidad de unos consecutivos que hay debajo de mi (en la misma columna jj)
                 int onesColumJJ = 0, ii = i;
                 while (ii < n && arr[ii][jj] == 1)
                 {
