@@ -2,6 +2,7 @@
 using namespace std;
 
 long long MOD = 1e9 + 7;
+long long inv = 500000004; // inverse of 2 modulo 1e9 + 7
 
 int main()
 {
@@ -26,7 +27,7 @@ int main()
     }
 
     // multiplico la cantidad de inversiones por n ... ya que se repiten n veces la cadena
-    inversions *= n;
+    inversions = ((inversions % MOD) * (n % MOD)) % MOD;
 
     // dado s1 y s2 dos strings
     // sea f(s1 + s2) = f(s1) + f(s2) + g(s1, s2)
@@ -43,7 +44,7 @@ int main()
 
         // le sumo a g la cantidad de letras que son mayores que la letra #i del abecedario
         for (int j = i + 1; j < 26; j++)
-            g += freq[i] * freq[j]; // si hay 5 letras 'a' y 3 letras 'd', se tiene que cada letra 'a' es menor que las 3 letras 'd'
+            g = ((g % MOD) + ((freq[i] % MOD) * (freq[j] % MOD))) % MOD; // si hay 5 letras 'a' y 3 letras 'd', se tiene que cada letra 'a' es menor que las 3 letras 'd'
     }
 
     // se mulltiplica g por n * (n - 1) / 2 (la formula de la sumatoria de i = 1 a i = n
@@ -62,8 +63,11 @@ int main()
 
     // y asi voy...
 
-    inversions = ((inversions % MOD) + (((g % MOD) * ((long long)((int)(n * (n - 1) / 2) % MOD))) % MOD)) % MOD;
+    long long rep = ((n % MOD) * ((((n % MOD) - (1 % MOD)) % MOD)) % MOD) % MOD;
+    rep = (rep * inv) % MOD;
+    inversions = ((inversions % MOD) + ((((g % MOD) * (rep))) % MOD)) % MOD;
 
     cout << inversions << endl;
+
     return 0;
 }
