@@ -47,7 +47,7 @@ int main()
             g = ((g % MOD) + ((freq[i] % MOD) * (freq[j] % MOD))) % MOD; // si hay 5 letras 'a' y 3 letras 'd', se tiene que cada letra 'a' es menor que las 3 letras 'd'
     }
 
-    // se mulltiplica g por n * (n - 1) / 2 (la formula de la sumatoria de i = 1 a i = n
+    // se mulltiplica g por n * (n - 1) / 2
     // ya que cada vez que concateno s, se aumenta g en g, 2*g, 3*g, etc...
 
     // ejemplo: s = "cab"
